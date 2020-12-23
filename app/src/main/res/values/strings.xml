@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">APM</string>
+    <string name="email_hint">Enter an Email</string>
+    <string name="pass_hint">Enter a password</string>
+    <string name="login_button_text">Login</string>
+    <string name="reg_button_text">Register</string>
+    <string name="wrong_login">Invalid email or password!</string>
+    <string name="reg_completed">Registration completed!</string>
+    <string name="empty_reg">Fill all the brackets!</string>
+</resources>
