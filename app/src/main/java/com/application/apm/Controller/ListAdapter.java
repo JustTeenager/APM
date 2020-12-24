@@ -14,10 +14,8 @@ import com.application.apm.Model.ModelAble;
 import com.application.apm.Model.Payment;
 import com.application.apm.Model.User;
 import com.application.apm.R;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
+import com.application.apm.View.ListFragmentPayment;
+import com.application.apm.View.UserDetailFragment;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
@@ -32,12 +30,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
         this.context = context;
     }
 
+    public List<ModelAble> getAdapterList() {
+        return mAdapterList;
+    }
 
-    //TODO Сделать лейауты холдерам,разобраться с ViewType
+
     @NonNull
     @Override
     public ListAdapter.ListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (typeHolder== UsersList.USER_LIST_HOLDER_TYPE) return new UsersList(LayoutInflater.from(context).inflate(R.layout.item_user_in_list,parent,false));
+        else if (typeHolder== PaymentList.PAYMENT_LIST_HOLDER_TYPE) return new PaymentList(LayoutInflater.from(context).inflate(R.layout.item_payment,parent,false));
         return null;
     }
 
@@ -69,20 +71,23 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
         protected abstract void setInformationInView(ModelAble model);
     }
 
-    public static class UsersList extends ListHolder{
+    public class UsersList extends ListHolder{
         public static final int USER_LIST_HOLDER_TYPE = 1;
         private TextView nameText;
         private TextView secondNameText;
         private TextView ageText;
         private TextView dateRegistrationText;
+        private UserDetailFragment.CallBack mCallBack;
 
         public UsersList(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void bind(ModelAble model) {
             this.model=model;
+            this.mCallBack= (UserDetailFragment.CallBack) context;
             setInformationInView(model);
         }
 
@@ -101,24 +106,27 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
             nameText.setText(user.getName());
             secondNameText.setText(user.getSecondName());
             ageText.setText(String.valueOf(user.getAge()));
-            String dateReg = "Дата регистрации ";
+            String dateReg = context.getString(R.string.reg_date_info);
             dateRegistrationText.setText(dateReg+user.getDate());
         }
 
 
         @Override
         public void onClick(View v) {
-
+            mCallBack.onUserClicked((User) model);
         }
     }
 
-    public static class PaymentList extends ListHolder{
+    public class PaymentList extends ListHolder{
         public static final int PAYMENT_LIST_HOLDER_TYPE = 2;
         private TextView sumTextView;
         private TextView dateTextView;
+        private ListFragmentPayment.Callback mCallback;
 
         public PaymentList(@NonNull View itemView) {
+
             super(itemView);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -131,6 +139,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
         protected void initView(View v) {
             sumTextView = v.findViewById(R.id.sum_payment);
             dateTextView = v.findViewById(R.id.date_payment);
+            mCallback= (ListFragmentPayment.Callback) context;
         }
 
         @Override
@@ -142,7 +151,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
 
         @Override
         public void onClick(View v) {
-
+            mCallback.onPayValueChangePressed(((Payment)model).getSum(),getAdapterPosition());
         }
     }
 }

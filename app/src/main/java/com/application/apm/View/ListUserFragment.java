@@ -16,13 +16,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 import com.application.apm.Controller.ListAdapter;
 import com.application.apm.Model.ModelAble;
+import com.application.apm.Model.RoomDBSingleton;
 import com.application.apm.Model.User;
-import com.application.apm.Model.UserDataBase;
 import com.application.apm.R;
 
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class ListUserFragment extends Fragment{
 
     private RecyclerView listUser;
     private List<User> users;
-    private UserDataBase dataBase;
+    //private UserDataBase dataBase;
     private UsersCallback usersCallback;
     private ListAdapter listAdapter;
 
@@ -53,12 +51,9 @@ public class ListUserFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list_user, container, false);
         users = new ArrayList<>();
-        //TODO поменять на синглтон
-        dataBase = Room.databaseBuilder(getActivity(), UserDataBase.class, "DataBase.db")
-                .allowMainThreadQueries()
-                .build();
-        users = dataBase.getModelDao().getUsers();
+        users = RoomDBSingleton.getInstance(getContext()).getUserDao().getUsers();
         List<ModelAble> modelAbles = new ArrayList<>();
+        Log.e("LIST CREATED","Name= "+users.get(0).getName());
         modelAbles.addAll(users);
         listUser = v.findViewById(R.id.list_user);
         listUser.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -119,10 +114,10 @@ public class ListUserFragment extends Fragment{
     private void updateItems(String query){
         users.clear();
         if (query!=null) {
-            users = dataBase.getModelDao().getUserBySecondName(query);
+            users = RoomDBSingleton.getInstance(getContext()).getUserDao().getUserBySecondName(query);
         }
         else {
-            users = dataBase.getModelDao().getUsers();
+            users = RoomDBSingleton.getInstance(getContext()).getUserDao().getUsers();
         }
         List<ModelAble> modelAbles = new ArrayList<>();
         modelAbles.addAll(users);

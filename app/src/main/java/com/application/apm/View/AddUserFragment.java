@@ -12,13 +12,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.room.Room;
 
+import com.application.apm.Model.RoomDBSingleton;
 import com.application.apm.Model.User;
-import com.application.apm.Model.UserDataBase;
 import com.application.apm.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 public class AddUserFragment extends Fragment {
@@ -26,7 +28,7 @@ public class AddUserFragment extends Fragment {
     private EditText nameEditText;
     private EditText secondNameEditText;
     private EditText ageEditText;
-    private UserDataBase dataBase;
+   // private UserDataBase dataBase;
     private Button addButton;
     private Button backButton;
     private AddUserCallback callback;
@@ -41,8 +43,6 @@ public class AddUserFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_add_user,container,false);
-        //TODO поменять на синглтон
-        dataBase = Room.databaseBuilder(getActivity(),UserDataBase.class,"DataBase.db").allowMainThreadQueries().build();
         initView(v);
         setClickButtons();
         return v;
@@ -90,8 +90,14 @@ public class AddUserFragment extends Fragment {
         user.setName(nameEditText.getText().toString());
         user.setSecondName(secondNameEditText.getText().toString());
         user.setAge(Integer.parseInt(ageEditText.getText().toString()));
-        user.setDate(new Date());
-        dataBase.getModelDao().insertUser(user);
+        SimpleDateFormat sdf = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy",
+                Locale.ENGLISH);
+        try {
+            user.setDate(sdf.parse(new Date().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        RoomDBSingleton.getInstance(getContext()).getUserDao().insertUser(user);
     }
 
     public interface AddUserCallback{

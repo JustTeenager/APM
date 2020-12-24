@@ -6,7 +6,10 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 @Entity(tableName = "Payments")
 public class Payment implements ModelAble {
@@ -20,6 +23,18 @@ public class Payment implements ModelAble {
     @TypeConverters(DateConverter.class)
     @ColumnInfo(name = "Date")
     private Date mDate;
+
+    public Payment(String id, int sum) {
+        this.id=id;
+        this.sum=sum;
+        SimpleDateFormat sdf = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy",
+                Locale.ENGLISH);
+        try {
+            this.mDate=sdf.parse(new Date().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
     public String getId() {
         return id;

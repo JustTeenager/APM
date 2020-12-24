@@ -24,15 +24,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:textAppearanceLarge"
-            android:text="ID:"
+            android:text="@string/id_title"
             android:layout_marginRight="4dp"
             android:gravity="center"/>
 
         <TextView
+            android:id="@+id/id_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:textAppearanceLarge"
-            android:text="DKSAKDASKDKASDKASK"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -47,15 +47,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:textAppearanceLarge"
-            android:text="Name:"
+            android:text="@string/name_title"
             android:layout_marginRight="4dp"
             android:gravity="center"/>
 
         <TextView
+            android:id="@+id/name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:textAppearanceLarge"
-            android:text="Alexey"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -70,15 +70,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:textAppearanceLarge"
-            android:text="Second Name:"
+            android:text="@string/second_name_title"
             android:layout_marginRight="4dp"
             android:gravity="center"/>
 
         <TextView
+            android:id="@+id/second_name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:textAppearanceLarge"
-            android:text="Kotov"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -94,35 +94,100 @@
             android:layout_height="wrap_content"
             style="?android:textAppearanceLarge"
             android:textSize="20dp"
-            android:text="Age:"
+            android:text="@string/age_title"
             android:layout_marginRight="4dp"
             android:gravity="center"/>
 
         <TextView
+            android:id="@+id/age_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:textAppearanceMedium"
-            android:text="19"
             android:layout_marginRight="12dp"
             android:gravity="center"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             style="?android:textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="4dp"
             android:gravity="center"
-            android:text="Number of payments:"
+            android:text="@string/number_of_payments_title"
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/number_of_payments_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:textAppearanceMedium"
-            android:text="12"
             android:gravity="center"/>
-
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+    <TextView
+        style="?android:textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:text="@string/registration_date_title"/>
+
+    <TextView
+        android:id="@+id/date_text"
+        style="?android:textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_marginRight="16dp"
+            android:id="@+id/edit_user_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_button"
+            android:text="@string/edit_user_btn_title"
+            android:textColor="@color/chat_text"/>
+
+        <Button
+            android:layout_marginRight="16dp"
+            android:padding="8dp"
+            android:id="@+id/view_payments_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_button"
+            android:text="@string/view_payments_btn_title"
+            android:textColor="@color/chat_text"/>
+
+        <Button
+            android:padding="8dp"
+            android:id="@+id/add_payment_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_button"
+            android:text="@string/add_payment_btn_title"
+            android:textColor="@color/chat_text"/>
+        
+    </LinearLayout>
 
 </LinearLayout>

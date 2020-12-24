@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Dao
-public interface ModelDao {
+public interface UserDao {
 
         @Query("SELECT * FROM Users")
         List<User> getUsers();
@@ -28,12 +28,6 @@ public interface ModelDao {
         @Query("SELECT * FROM Users WHERE Age LIKE:age")
         User getUserBySecondName(int age);
 
-        @Query("SELECT * FROM Payments WHERE Sum LIKE:sum")
-        Payment getPaymentBySum(int sum);
-
-        @Query("SELECT * FROM Payments WHERE ID LIKE:id")
-        Payment getPaymentById(int id);
-
 
         @Insert
         Long insertUser(User user);
@@ -41,16 +35,7 @@ public interface ModelDao {
         @Delete
         void deleteUser(User user);
 
-        @Update
+        @Update()
         void updateUser(User user);
-
-        @Insert
-        Long insertPayment(Payment payment);
-
-        @Delete
-        void deletePayment(Payment payment);
-
-        @Update
-        void updatePayment(Payment payment);
 }
 

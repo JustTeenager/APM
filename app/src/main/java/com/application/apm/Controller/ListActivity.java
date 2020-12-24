@@ -2,11 +2,14 @@ package com.application.apm.Controller;
 
 import androidx.fragment.app.Fragment;
 
+import com.application.apm.Model.User;
 import com.application.apm.R;
 import com.application.apm.View.AddUserFragment;
 import com.application.apm.View.ListUserFragment;
+import com.application.apm.View.UserDetailFragment;
+import com.application.apm.View.ListFragmentPayment;
 
-public class ListActivity extends SingleFragmentActivity implements ListUserFragment.UsersCallback, AddUserFragment.AddUserCallback {
+public class ListActivity extends SingleFragmentActivity implements ListUserFragment.UsersCallback, AddUserFragment.AddUserCallback, UserDetailFragment.CallBack, ListFragmentPayment.Callback {
 
     @Override
     public int getResId() {
@@ -26,5 +29,21 @@ public class ListActivity extends SingleFragmentActivity implements ListUserFrag
     @Override
     public void openListUser() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ListUserFragment()).commit();
+    }
+
+        @Override
+        public void onUserClicked(User user) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,UserDetailFragment.getInstance(user)).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onPaymentListClicked(int code, String id) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ListFragmentPayment.getInstance(code,id)).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onPayValueChangePressed(int sum, int adapterNumber) {
+        ListFragmentPayment fragment= (ListFragmentPayment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        fragment.showChangePaymentValueDialog(sum, adapterNumber);
     }
 }

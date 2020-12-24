@@ -4,9 +4,11 @@ import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 
+import com.application.apm.Model.User;
 import com.application.apm.View.LoginFragment;
 import com.application.apm.R;
 import com.application.apm.View.RegisterFragment;
+import com.application.apm.View.UserDetailFragment;
 
 public class MainActivity extends SingleFragmentActivity implements LoginFragment.CallBack, RegisterFragment.CallBack {
 
@@ -25,11 +27,12 @@ public class MainActivity extends SingleFragmentActivity implements LoginFragmen
        // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,null);
         Intent intent = new Intent(this,ListActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
     public void register() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RegisterFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RegisterFragment()).addToBackStack(null).commit();
     }
 
     @Override
