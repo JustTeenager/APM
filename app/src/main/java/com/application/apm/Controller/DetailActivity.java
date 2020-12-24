@@ -7,7 +7,7 @@ import com.application.apm.R;
 public class DetailActivity extends SingleFragmentActivity {
     @Override
     public int getResId() {
-        return R.layout.single_activity_fragment;
+        return R.layout.activity_single_fragment;
     }
 
     @Override

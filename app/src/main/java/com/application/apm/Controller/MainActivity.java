@@ -1,5 +1,7 @@
 package com.application.apm.Controller;
 
+import android.content.Intent;
+
 import androidx.fragment.app.Fragment;
 
 import com.application.apm.View.LoginFragment;
@@ -10,7 +12,7 @@ public class MainActivity extends SingleFragmentActivity implements LoginFragmen
 
     @Override
     public int getResId() {
-        return R.layout.single_activity_fragment;
+        return R.layout.activity_single_fragment;
     }
 
     @Override
@@ -21,6 +23,8 @@ public class MainActivity extends SingleFragmentActivity implements LoginFragmen
     @Override
     public void login() {
        // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,null);
+        Intent intent = new Intent(this,ListActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -2,7 +2,9 @@ package com.application.apm.Model;
 
 import androidx.room.TypeConverter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DateConverter {
 
@@ -11,7 +13,10 @@ public class DateConverter {
         return date.getTime();
     }
 
-    @TypeConverter Date toDate(Long time){
+    @TypeConverter
+    public Date toDate(Long time){
         return new Date(time);
     }
+
+
 }

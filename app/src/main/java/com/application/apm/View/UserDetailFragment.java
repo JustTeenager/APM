@@ -11,14 +11,12 @@ import androidx.fragment.app.Fragment;
 
 import com.application.apm.R;
 
-import java.util.UUID;
-
 public class UserDetailFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.user_detail_fragment,container,false);
+        View v=inflater.inflate(R.layout.fragment_user_detail,container,false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

@@ -28,6 +28,8 @@ public class User implements ModelAble {
     @ColumnInfo(name = "SecondName")
     private String SecondName;
 
+
+    public User(){}
     public String getSecondName() {
         return SecondName;
     }
@@ -66,5 +68,13 @@ public class User implements ModelAble {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 }

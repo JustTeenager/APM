@@ -44,4 +44,12 @@ public class Payment implements ModelAble {
     public void setDate(Date date) {
         mDate = date;
     }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
 }
