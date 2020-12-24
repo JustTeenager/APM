@@ -1,6 +1,7 @@
 package com.application.apm.View;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,12 +67,13 @@ public class LoginFragment extends Fragment {
         if (pass!=null) mPasswordInput.setText(pass);
     }
 
-    //TODO авторизация работника
     private void checkLogin(String login,String pass) {
-        if ("a".equals(login) && "b".equals(pass)){
+        SharedPreferences sp =getActivity().getPreferences(Context.MODE_PRIVATE);
+        String loginAtRegistration = sp.getString(RegisterFragment.KEY_TO_EMAIL_IN_PREFS," ");
+        String passAtRegistration = sp.getString(RegisterFragment.KEY_TO_PASS_IN_PREFS," ");
+        if (login.equals(loginAtRegistration) && pass.equals(passAtRegistration)){
             mActivityCallback.login();
-            return;
-        }
+        }else
         Toast.makeText(getContext(),getString(R.string.wrong_login),Toast.LENGTH_SHORT).show();
     }
 

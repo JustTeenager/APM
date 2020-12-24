@@ -7,4 +7,5 @@
     <string name="wrong_login">Invalid email or password!</string>
     <string name="reg_completed">Registration completed!</string>
     <string name="empty_reg">Fill all the brackets!</string>
+    <string name="login">You are login</string>
 </resources>
