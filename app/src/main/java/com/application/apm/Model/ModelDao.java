@@ -8,8 +8,6 @@ import androidx.room.Update;
 
 import java.util.List;
 
-//TODO Разобраться с датами в бд
-
 @Dao
 public interface ModelDao {
 

@@ -4,6 +4,7 @@ package com.application.apm.Model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.util.Date;
 
@@ -15,6 +16,8 @@ public class Payment implements ModelAble {
     private int id;
     @ColumnInfo(name = "Sum")
     private int sum;
+
+    @TypeConverters(DateConverter.class)
     @ColumnInfo(name = "Date")
     private Date mDate;
 
