@@ -15,7 +15,7 @@ public interface ModelDao {
         List<User> getUsers();
 
         @Query("SELECT * FROM Users WHERE ID LIKE:id")
-        User getUserById(int id);
+        User getUserById(String id);
 
         @Query("SELECT * FROM Users WHERE Name LIKE:name")
         User getUserByName(String name);

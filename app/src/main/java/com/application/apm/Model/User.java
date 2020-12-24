@@ -16,7 +16,7 @@ public class User implements ModelAble {
     private int _id;
 
     @ColumnInfo(name = "ID")
-    private int id;
+    private String id;
     @ColumnInfo(name = "Age")
     private int age;
 
@@ -52,11 +52,11 @@ public class User implements ModelAble {
         this.age = age;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

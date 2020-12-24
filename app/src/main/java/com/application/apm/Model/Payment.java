@@ -13,7 +13,7 @@ public class Payment implements ModelAble {
     @PrimaryKey(autoGenerate = true)
     private int _id;
     @ColumnInfo(name = "ID")
-    private int id;
+    private String id;
     @ColumnInfo(name = "Sum")
     private int sum;
 
@@ -21,11 +21,11 @@ public class Payment implements ModelAble {
     @ColumnInfo(name = "Date")
     private Date mDate;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
