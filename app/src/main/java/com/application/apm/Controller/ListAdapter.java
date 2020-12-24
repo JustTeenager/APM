@@ -11,8 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.application.apm.Model.ModelAble;
+import com.application.apm.Model.Payment;
 import com.application.apm.Model.User;
 import com.application.apm.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +100,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
             User user = (User) model;
             nameText.setText(user.getName());
             secondNameText.setText(user.getSecondName());
-            ageText.setText(user.getAge());
+            ageText.setText(String.valueOf(user.getAge()));
             String dateReg = "Дата регистрации ";
             dateRegistrationText.setText(dateReg+user.getDate());
         }
@@ -109,8 +112,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
         }
     }
 
-    static class PaymentList extends ListHolder{
+    public static class PaymentList extends ListHolder{
         public static final int PAYMENT_LIST_HOLDER_TYPE = 2;
+        private TextView sumTextView;
+        private TextView dateTextView;
 
         public PaymentList(@NonNull View itemView) {
             super(itemView);
@@ -124,12 +129,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
 
         @Override
         protected void initView(View v) {
-
+            sumTextView = v.findViewById(R.id.sum_payment);
+            dateTextView = v.findViewById(R.id.date_payment);
         }
 
         @Override
         protected void setInformationInView(ModelAble model) {
-
+            Payment payment = (Payment) model;
+            sumTextView.setText(String.valueOf(payment.getSum()));
+            dateTextView.setText(payment.getDate().toString());
         }
 
         @Override

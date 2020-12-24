@@ -23,7 +23,7 @@ public interface ModelDao {
         User getUserByName(String name);
 
         @Query("SELECT * FROM Users WHERE SecondName LIKE:secondName")
-        User getUserBySecondName(String secondName);
+        List<User> getUserBySecondName(String secondName);
 
         @Query("SELECT * FROM Users WHERE Age LIKE:age")
         User getUserBySecondName(int age);

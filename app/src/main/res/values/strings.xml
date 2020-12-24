@@ -8,4 +8,12 @@
     <string name="reg_completed">Registration completed!</string>
     <string name="empty_reg">Fill all the brackets!</string>
     <string name="login">You are login</string>
+    <string name="add_user">Добавить пользователя</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_second_name">Введите фамилию</string>
+    <string name="enter_age" >Введите возраст</string>
+    <string name="invalid_add">Не все поля заполнены</string>
+    <string name="back">Назад</string>
+    <string name="search">поиск</string>
+    <string name="cancel">отмена</string>
 </resources>
