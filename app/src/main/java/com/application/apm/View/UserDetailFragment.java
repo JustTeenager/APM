@@ -76,6 +76,7 @@ public class UserDetailFragment extends Fragment  {
         ageText.setText(String.valueOf(mUser.getAge()));
         idText.setText(mUser.getId());
         dateText.setText(mUser.getDate().toString());
+        numberOfPaymentsText.setText(String.valueOf(RoomDBSingleton.getInstance(getActivity()).getPaymentDao().getPaymentById(mUser.getId()).size()));
 
         editUserButton=v.findViewById(R.id.edit_user_btn);
         viewPaymentsButton=v.findViewById(R.id.view_payments_btn);
@@ -153,6 +154,7 @@ public class UserDetailFragment extends Fragment  {
 
                     //потоки
                     RoomDBSingleton.getInstance(getContext()).getPaymentDao().insertPayment(payment);
+                    numberOfPaymentsText.setText(String.valueOf(RoomDBSingleton.getInstance(getActivity()).getPaymentDao().getPaymentById(mUser.getId()).size()));
                 }
             }
         }
