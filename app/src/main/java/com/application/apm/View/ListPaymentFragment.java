@@ -22,7 +22,7 @@ import com.application.apm.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListFragmentPayment extends Fragment {
+public class ListPaymentFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ListAdapter adapter;
@@ -34,14 +34,13 @@ public class ListFragmentPayment extends Fragment {
     private static final String KEY_TO_TYPE_OF_PAYMENT_FILTER="key_to_type_of_payment_filter";
     public static final int USER_PAYMENT_FILTER=-1;
     private static final String USER_ID_KEY="user_id_key";
-    public static final int ALL_PAYMENT_FILTER=-3;
 
     private static final int CHANGE_PAY_VALUE_REQUEST_CODE=5;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_payment,container,false);
+        View v = inflater.inflate(R.layout.fragment_list_payment,container,false);
         init(v);
         return v;
     }
@@ -49,15 +48,9 @@ public class ListFragmentPayment extends Fragment {
     private void init(View v) {
         adapterNum=-1;
         payments = new ArrayList<>();
-        switch (getArguments().getInt(KEY_TO_TYPE_OF_PAYMENT_FILTER)){
-            case USER_PAYMENT_FILTER:{
-                payments= RoomDBSingleton.getInstance(getContext()).getPaymentDao().getPaymentById(getArguments().getString(USER_ID_KEY));
-            }break;
-            case ALL_PAYMENT_FILTER:{
-                payments=RoomDBSingleton.getInstance(getContext()).getPaymentDao().getPayments();
-            }break;
+        if (getArguments().getInt(KEY_TO_TYPE_OF_PAYMENT_FILTER) == USER_PAYMENT_FILTER) {
+            payments = RoomDBSingleton.getInstance(getContext()).getPaymentDao().getPaymentById(getArguments().getString(USER_ID_KEY));
         }
-        //payments = RoomDBSingleton.getInstance(getActivity()).getPaymentDao().getPaymentById();
         List<ModelAble> modelAbles = new ArrayList<>();
         modelAbles.addAll(payments);
         recyclerView = v.findViewById(R.id.list_payment);
@@ -66,8 +59,8 @@ public class ListFragmentPayment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    public static ListFragmentPayment getInstance(int code, String id){
-        ListFragmentPayment fragment=new ListFragmentPayment();
+    public static ListPaymentFragment getInstance(int code, String id){
+        ListPaymentFragment fragment=new ListPaymentFragment();
         Bundle args=new Bundle();
         args.putInt(KEY_TO_TYPE_OF_PAYMENT_FILTER,code);
         args.putString(USER_ID_KEY,id);

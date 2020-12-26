@@ -30,7 +30,6 @@ public class ListUserFragment extends Fragment{
 
     private RecyclerView listUser;
     private List<User> users;
-    //private UserDataBase dataBase;
     private UsersCallback usersCallback;
     private ListAdapter listAdapter;
 
@@ -53,7 +52,6 @@ public class ListUserFragment extends Fragment{
         users = new ArrayList<>();
         users = RoomDBSingleton.getInstance(getContext()).getUserDao().getUsers();
         List<ModelAble> modelAbles = new ArrayList<>();
-        Log.e("LIST CREATED","Name= "+users.get(0).getName());
         modelAbles.addAll(users);
         listUser = v.findViewById(R.id.list_user);
         listUser.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -121,7 +119,6 @@ public class ListUserFragment extends Fragment{
         }
         List<ModelAble> modelAbles = new ArrayList<>();
         modelAbles.addAll(users);
-        Log.d("users", String.valueOf(users.size()));
         listAdapter = new ListAdapter(modelAbles, ListAdapter.UsersList.USER_LIST_HOLDER_TYPE, getActivity());
         listUser.setAdapter(listAdapter);
     }

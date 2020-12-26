@@ -7,9 +7,9 @@ import com.application.apm.R;
 import com.application.apm.View.AddUserFragment;
 import com.application.apm.View.ListUserFragment;
 import com.application.apm.View.UserDetailFragment;
-import com.application.apm.View.ListFragmentPayment;
+import com.application.apm.View.ListPaymentFragment;
 
-public class ListActivity extends SingleFragmentActivity implements ListUserFragment.UsersCallback, AddUserFragment.AddUserCallback, UserDetailFragment.CallBack, ListFragmentPayment.Callback {
+public class ListActivity extends SingleFragmentActivity implements ListUserFragment.UsersCallback, AddUserFragment.AddUserCallback, UserDetailFragment.CallBack, ListPaymentFragment.Callback {
 
     @Override
     public int getResId() {
@@ -38,12 +38,12 @@ public class ListActivity extends SingleFragmentActivity implements ListUserFrag
 
     @Override
     public void onPaymentListClicked(int code, String id) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ListFragmentPayment.getInstance(code,id)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ListPaymentFragment.getInstance(code,id)).addToBackStack(null).commit();
     }
 
     @Override
     public void onPayValueChangePressed(int sum, int adapterNumber) {
-        ListFragmentPayment fragment= (ListFragmentPayment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        ListPaymentFragment fragment= (ListPaymentFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         fragment.showChangePaymentValueDialog(sum, adapterNumber);
     }
 }

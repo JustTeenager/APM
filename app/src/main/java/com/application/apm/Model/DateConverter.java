@@ -2,9 +2,7 @@ package com.application.apm.Model;
 
 import androidx.room.TypeConverter;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class DateConverter {
 

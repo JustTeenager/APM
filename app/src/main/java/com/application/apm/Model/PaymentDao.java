@@ -15,18 +15,9 @@ public interface PaymentDao {
     @Insert
     Long insertPayment(Payment payment);
 
-    @Delete
-    void deletePayment(Payment payment);
-
     @Update
     void updatePayment(Payment payment);
 
-    @Query("SELECT * FROM Payments WHERE Sum LIKE:sum")
-    List<Payment> getPaymentBySum(int sum);
-
     @Query("SELECT * FROM Payments WHERE ID LIKE:id")
     List<Payment> getPaymentById(String id);
-
-    @Query("SELECT * FROM Payments")
-    List<Payment> getPayments();
 }

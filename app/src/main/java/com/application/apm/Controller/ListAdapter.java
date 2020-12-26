@@ -14,7 +14,7 @@ import com.application.apm.Model.ModelAble;
 import com.application.apm.Model.Payment;
 import com.application.apm.Model.User;
 import com.application.apm.R;
-import com.application.apm.View.ListFragmentPayment;
+import com.application.apm.View.ListPaymentFragment;
 import com.application.apm.View.UserDetailFragment;
 import java.util.List;
 
@@ -121,7 +121,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
         public static final int PAYMENT_LIST_HOLDER_TYPE = 2;
         private TextView sumTextView;
         private TextView dateTextView;
-        private ListFragmentPayment.Callback mCallback;
+        private ListPaymentFragment.Callback mCallback;
 
         public PaymentList(@NonNull View itemView) {
 
@@ -139,7 +139,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
         protected void initView(View v) {
             sumTextView = v.findViewById(R.id.sum_payment);
             dateTextView = v.findViewById(R.id.date_payment);
-            mCallback= (ListFragmentPayment.Callback) context;
+            mCallback= (ListPaymentFragment.Callback) context;
         }
 
         @Override

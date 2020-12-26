@@ -28,7 +28,6 @@ public class AddUserFragment extends Fragment {
     private EditText nameEditText;
     private EditText secondNameEditText;
     private EditText ageEditText;
-   // private UserDataBase dataBase;
     private Button addButton;
     private Button backButton;
     private AddUserCallback callback;

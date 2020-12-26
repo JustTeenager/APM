@@ -9,16 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.application.apm.Model.Payment;
 import com.application.apm.Model.RoomDBSingleton;
 import com.application.apm.Model.User;
 import com.application.apm.R;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -35,7 +32,6 @@ public class UserDetailFragment extends Fragment  {
 
     private CallBack mCallBack;
 
-    //TODO Сделать количество оплат
     private TextView numberOfPaymentsText;
 
     private static final int CODE_TO_EDIT_USER=1;
@@ -103,7 +99,7 @@ public class UserDetailFragment extends Fragment  {
         viewPaymentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCallBack.onPaymentListClicked(ListFragmentPayment.USER_PAYMENT_FILTER,mUser.getId());
+                mCallBack.onPaymentListClicked(ListPaymentFragment.USER_PAYMENT_FILTER,mUser.getId());
             }
         });
     }
@@ -146,13 +142,11 @@ public class UserDetailFragment extends Fragment  {
                     secondNameText.setText(mUser.getSecondName());
                     ageText.setText(String.valueOf(mUser.getAge()));
 
-                    //потоки
                     RoomDBSingleton.getInstance(getContext()).getUserDao().updateUser(mUser);
                 }break;
                 case CODE_TO_ADD_PAYMENT:{
                     Payment payment=new Payment(mUser.getId(),data.getIntExtra(AddPaymentDialog.KEY_TO_PAYMENT_VALUE,-1));
 
-                    //потоки
                     RoomDBSingleton.getInstance(getContext()).getPaymentDao().insertPayment(payment);
                     numberOfPaymentsText.setText(String.valueOf(RoomDBSingleton.getInstance(getActivity()).getPaymentDao().getPaymentById(mUser.getId()).size()));
                 }
