@@ -28,9 +28,12 @@
 
     <Button
         android:id="@+id/add_user_button"
+        android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/chat_text"
+        android:background="@drawable/edit_button"
         android:layout_marginBottom="8dp"
         android:text="@string/add_user"/>
 
@@ -38,6 +41,8 @@
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/chat_text"
+        android:background="@drawable/edit_button"
         android:layout_gravity="center"
         android:text="@string/back"/>
 
