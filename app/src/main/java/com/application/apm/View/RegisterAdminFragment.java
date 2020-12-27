@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.application.apm.R;
 
-public class RegisterFragment extends Fragment {
+public class RegisterAdminFragment extends Fragment {
 
     public static final String KEY_TO_EMAIL_IN_PREFS="key_to_email";
     public static final String KEY_TO_PASS_IN_PREFS="key_to_pass";
@@ -36,7 +36,7 @@ public class RegisterFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_register,container,false);
+        View v=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_register_admin,container,false);
         init(v);
         return v;
     }

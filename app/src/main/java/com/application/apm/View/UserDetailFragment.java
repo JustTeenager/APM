@@ -90,7 +90,7 @@ public class UserDetailFragment extends Fragment  {
         addPaymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddPaymentDialog dialog=new AddPaymentDialog();
+                AddPaymentDialog dialog=new AddPaymentDialog(AddPaymentDialog.KEY_TO_PAYMENT_LAYOUT_CODE);
                 dialog.setTargetFragment(UserDetailFragment.this,CODE_TO_ADD_PAYMENT);
                 dialog.show(getFragmentManager(),null);
             }
@@ -145,7 +145,7 @@ public class UserDetailFragment extends Fragment  {
                     RoomDBSingleton.getInstance(getContext()).getUserDao().updateUser(mUser);
                 }break;
                 case CODE_TO_ADD_PAYMENT:{
-                    Payment payment=new Payment(mUser.getId(),data.getIntExtra(AddPaymentDialog.KEY_TO_PAYMENT_VALUE,-1));
+                    Payment payment=new Payment(mUser.getId(), Integer.parseInt((String) data.getExtras().get(AddPaymentDialog.KEY_TO_VALUE)));
 
                     RoomDBSingleton.getInstance(getContext()).getPaymentDao().insertPayment(payment);
                     numberOfPaymentsText.setText(String.valueOf(RoomDBSingleton.getInstance(getActivity()).getPaymentDao().getPaymentById(mUser.getId()).size()));

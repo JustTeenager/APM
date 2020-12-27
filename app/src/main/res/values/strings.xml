@@ -28,4 +28,14 @@
     <string name="search">поиск</string>
     <string name="cancel">отмена</string>
     <string name="info_about_user">Информация о пользователе:</string>
+    <string name="reg_user_title">Регистрация пользователя</string>
+    <string name="reg_admin_title">Регистрация сотрудника</string>
+    <string name="client">Клиент</string>
+    <string name="admin">Сотрудник</string>
+    <string name="add_second_name_title">Введите фамилию</string>
+    <string name="add_name_title">Введите имя</string>
+    <string name="add_age">Введите возраст</string>
+    <string name="user_registered">Пользователь зарегистрирован!</string>
+    <string name="login_user_button_text">Вход для клиента</string>
+    <string name="enter_id_value">Введите id</string>
 </resources>

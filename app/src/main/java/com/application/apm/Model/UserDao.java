@@ -7,6 +7,8 @@ import androidx.room.Query;
 import androidx.room.TypeConverters;
 import androidx.room.Update;
 
+import com.application.apm.View.AddPaymentDialog;
+
 import java.util.List;
 
 
@@ -21,6 +23,9 @@ public interface UserDao {
 
         @Insert
         Long insertUser(User user);
+
+        @Query("SELECT * FROM Users WHERE ID LIKE:id")
+        User getUserById(String id);
 
         @Update()
         void updateUser(User user);

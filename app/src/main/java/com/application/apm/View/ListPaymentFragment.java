@@ -29,8 +29,6 @@ public class ListPaymentFragment extends Fragment {
     private List<Payment> payments;
     private int adapterNum;
 
-
-
     private static final String KEY_TO_TYPE_OF_PAYMENT_FILTER="key_to_type_of_payment_filter";
     public static final int USER_PAYMENT_FILTER=-1;
     private static final String USER_ID_KEY="user_id_key";
@@ -70,7 +68,7 @@ public class ListPaymentFragment extends Fragment {
 
     public void showChangePaymentValueDialog(int sum,int adapterNumber){
         adapterNum=adapterNumber;
-        AddPaymentDialog dialog=AddPaymentDialog.newInstance(sum);
+        AddPaymentDialog dialog=AddPaymentDialog.newInstance(sum,AddPaymentDialog.KEY_TO_PAYMENT_LAYOUT_CODE);
         dialog.setTargetFragment(this,CHANGE_PAY_VALUE_REQUEST_CODE);
         dialog.show(getActivity().getSupportFragmentManager(),null);
     }
@@ -79,7 +77,7 @@ public class ListPaymentFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode== Activity.RESULT_OK){
             if (requestCode==CHANGE_PAY_VALUE_REQUEST_CODE){
-                ((Payment) adapter.getAdapterList().get(adapterNum)).setSum(data.getIntExtra(AddPaymentDialog.KEY_TO_PAYMENT_VALUE,-1));
+                ((Payment) adapter.getAdapterList().get(adapterNum)).setSum((Integer.parseInt((String) data.getExtras().get(AddPaymentDialog.KEY_TO_VALUE))));
                 adapter.notifyItemChanged(adapterNum);
                 RoomDBSingleton.getInstance(getContext()).getPaymentDao().updatePayment(payments.get(adapterNum));
             }

@@ -18,25 +18,35 @@ import com.application.apm.R;
 
 public class AddPaymentDialog extends DialogFragment {
 
-    public static final String KEY_TO_PAYMENT_VALUE="key_to_payment_value";
+    public static final String KEY_TO_VALUE ="key_to_payment_value";
     private static final String KEY_TO_PREVIOUS_PAYMENT_VALUE_IN_ARGS="key_to_previous_payment_value_in_args";
+
+    public static final int KEY_TO_PAYMENT_LAYOUT_CODE=123;
+
+    private int layoutCode;
+
+    public AddPaymentDialog(int layoutCode){
+        this.layoutCode=layoutCode;
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        final EditText v= (EditText) LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_payment,null);
+        final EditText v;
+        if (layoutCode==KEY_TO_PAYMENT_LAYOUT_CODE) v= (EditText) LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_payment,null);
+        else v= (EditText) LayoutInflater.from(getContext()).inflate(R.layout.login_by_id_dialog,null);
         if (getArguments()!=null){
             v.setText(getArguments().getString(KEY_TO_PREVIOUS_PAYMENT_VALUE_IN_ARGS));
         }
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
         return builder
                 .setView(v)
-                .setTitle(R.string.enter_payment_value)
+                .setTitle(layoutCode==KEY_TO_PAYMENT_LAYOUT_CODE ? R.string.enter_payment_value : R.string.enter_id_value)
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (!v.getText().toString().isEmpty()) {
-                            sendResult(Integer.valueOf(v.getText().toString()));
+                            sendResult(v.getText().toString());
                             return;
                         }
                         Toast.makeText(getContext(),getString(R.string.empty_reg),Toast.LENGTH_SHORT).show();
@@ -45,14 +55,14 @@ public class AddPaymentDialog extends DialogFragment {
                 .create();
     }
 
-    private void sendResult(int value){
+    private void sendResult(String value){
         Intent intent=new Intent();
-        intent.putExtra(KEY_TO_PAYMENT_VALUE,value);
+        intent.putExtra(KEY_TO_VALUE,value);
         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK,intent);
     }
 
-    public static AddPaymentDialog newInstance(int paymentValue){
-        AddPaymentDialog dialog=new AddPaymentDialog();
+    public static AddPaymentDialog newInstance(int paymentValue,int layoutCode){
+        AddPaymentDialog dialog=new AddPaymentDialog(layoutCode);
         Bundle args=new Bundle();
         args.putString(KEY_TO_PREVIOUS_PAYMENT_VALUE_IN_ARGS,String.valueOf(paymentValue));
         dialog.setArguments(args);

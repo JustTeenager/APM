@@ -40,6 +40,16 @@
             android:textColor="@color/chat_text"/>
 
         <Button
+            android:id="@+id/login_user_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_button"
+            android:layout_marginTop="32dp"
+            android:padding="8dp"
+            android:text="@string/login_user_button_text"
+            android:textColor="@color/chat_text"/>
+
+        <Button
             android:id="@+id/reg_log_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

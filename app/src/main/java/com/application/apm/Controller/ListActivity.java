@@ -1,5 +1,8 @@
 package com.application.apm.Controller;
 
+import android.content.Context;
+import android.content.Intent;
+
 import androidx.fragment.app.Fragment;
 
 import com.application.apm.Model.User;
@@ -11,6 +14,9 @@ import com.application.apm.View.ListPaymentFragment;
 
 public class ListActivity extends SingleFragmentActivity implements ListUserFragment.UsersCallback, AddUserFragment.AddUserCallback, UserDetailFragment.CallBack, ListPaymentFragment.Callback {
 
+    private static User client;
+
+
     @Override
     public int getResId() {
         return R.layout.activity_single_fragment;
@@ -18,7 +24,9 @@ public class ListActivity extends SingleFragmentActivity implements ListUserFrag
 
     @Override
     public Fragment getFragment() {
+        if (client==null)
         return new ListUserFragment();
+        else return  UserDetailFragment.getInstance(client);
     }
 
     @Override
@@ -45,5 +53,11 @@ public class ListActivity extends SingleFragmentActivity implements ListUserFrag
     public void onPayValueChangePressed(int sum, int adapterNumber) {
         ListPaymentFragment fragment= (ListPaymentFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         fragment.showChangePaymentValueDialog(sum, adapterNumber);
+    }
+
+    public static Intent newInstance(Context context,User user){
+        client=user;
+        Intent intent=new Intent(context,ListActivity.class);
+        return intent;
     }
 }
