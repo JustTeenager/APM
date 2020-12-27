@@ -1,6 +1,7 @@
 package com.application.apm.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.application.apm.Controller.ListAdapter;
+import com.application.apm.Controller.MainActivity;
 import com.application.apm.Model.ModelAble;
 import com.application.apm.Model.RoomDBSingleton;
 import com.application.apm.Model.User;
@@ -102,9 +104,17 @@ public class ListUserFragment extends Fragment{
             case R.id.add_user_item:{
                 usersCallback.addUser();
             }
+            break;
             case R.id.menu_cancel_item:{
                 updateItems(null);
             }
+            break;
+            case R.id.exit_account:{
+                Intent intent=new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+            break;
         }
         return super.onOptionsItemSelected(item);
     }

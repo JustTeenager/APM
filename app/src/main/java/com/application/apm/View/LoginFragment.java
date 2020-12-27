@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.application.apm.Model.Admin;
 import com.application.apm.Model.RoomDBSingleton;
 import com.application.apm.Model.User;
 import com.application.apm.R;
@@ -84,10 +85,12 @@ public class LoginFragment extends Fragment {
     }
 
     private void checkLogin(String login,String pass) {
-        SharedPreferences sp =getActivity().getPreferences(Context.MODE_PRIVATE);
-        String loginAtRegistration = sp.getString(RegisterAdminFragment.KEY_TO_EMAIL_IN_PREFS," ");
-        String passAtRegistration = sp.getString(RegisterAdminFragment.KEY_TO_PASS_IN_PREFS," ");
-        if (login.equals(loginAtRegistration) && pass.equals(passAtRegistration)){
+        //SharedPreferences sp =getActivity().getPreferences(Context.MODE_PRIVATE);
+        //String loginAtRegistration = sp.getString(RegisterAdminFragment.KEY_TO_EMAIL_IN_PREFS," ");
+        //String passAtRegistration = sp.getString(RegisterAdminFragment.KEY_TO_PASS_IN_PREFS," ");
+        Admin admin = RoomDBSingleton.getInstance(getContext()).getAdminDao().getAdmin(login,pass);
+        //if (login.equals(loginAtRegistration) && pass.equals(passAtRegistration)){
+        if (admin!=null){
             mActivityCallback.login();
         }else
         Toast.makeText(getContext(),getString(R.string.wrong_login),Toast.LENGTH_SHORT).show();

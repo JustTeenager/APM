@@ -28,4 +28,6 @@ public class RoomDBSingleton {
     }
 
     public PaymentDao getPaymentDao(){return base.getPaymentDao();}
+
+    public AdminDao getAdminDao(){return base.getAdminDao();}
 }

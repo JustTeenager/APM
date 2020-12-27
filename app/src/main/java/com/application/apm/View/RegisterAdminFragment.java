@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.application.apm.Model.Admin;
+import com.application.apm.Model.RoomDBSingleton;
 import com.application.apm.R;
 
 public class RegisterAdminFragment extends Fragment {
@@ -55,13 +57,19 @@ public class RegisterAdminFragment extends Fragment {
 
     private void register() {
         if (!mEmailInput.getText().toString().isEmpty() && !mPasswordInput.getText().toString().isEmpty()){
-            SharedPreferences sp=getActivity().getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor mEditor = sp.edit();
-            mEditor.putString(KEY_TO_EMAIL_IN_PREFS, mEmailInput.getText().toString());
-            mEditor.putString(KEY_TO_PASS_IN_PREFS, mPasswordInput.getText().toString());
-            mEditor.commit();
+            //SharedPreferences sp=getActivity().getPreferences(Context.MODE_PRIVATE);
+            //SharedPreferences.Editor mEditor = sp.edit();
+            //mEditor.putString(KEY_TO_EMAIL_IN_PREFS, mEmailInput.getText().toString());
+            //mEditor.putString(KEY_TO_PASS_IN_PREFS, mPasswordInput.getText().toString());
+            //mEditor.commit();
+            Admin admin = new Admin(mEmailInput.getText().toString(),mPasswordInput.getText().toString());
+            RoomDBSingleton.getInstance(getContext()).getAdminDao().insertAdmin(admin);
             Toast.makeText(getContext(),getString(R.string.reg_completed),Toast.LENGTH_SHORT).show();
             mActivityCallback.onRegistered(mEmailInput.getText().toString(),mPasswordInput.getText().toString());
+            return;
+        }
+        else if (mPasswordInput.getText().length()>9){
+            Toast.makeText(getContext(), R.string.password_short,Toast.LENGTH_SHORT).show();
             return;
         }
         Toast.makeText(getContext(),getString(R.string.empty_reg),Toast.LENGTH_SHORT).show();

@@ -15,4 +15,9 @@
     android:title="@string/add_user"
     android:id="@+id/add_user_item"
     app:showAsAction="never"/>
+
+    <item
+        android:title="@string/exit_account"
+        android:id="@+id/exit_account"
+        app:showAsAction="never"/>
 </menu>

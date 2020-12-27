@@ -26,7 +26,7 @@
     <string name="invalid_add">Не все поля заполнены</string>
     <string name="back">Назад</string>
     <string name="search">поиск</string>
-    <string name="cancel">отмена</string>
+    <string name="cancel">Отмена поиска</string>
     <string name="info_about_user">Информация о пользователе:</string>
     <string name="reg_user_title">Регистрация пользователя</string>
     <string name="reg_admin_title">Регистрация сотрудника</string>
@@ -38,4 +38,6 @@
     <string name="user_registered">Пользователь зарегистрирован!</string>
     <string name="login_user_button_text">Вход для клиента</string>
     <string name="enter_id_value">Введите id</string>
+    <string name="password_short">Пароль слишком короткий, он должен содержать не менее 10 символов</string>
+    <string name="exit_account">Выйти из аккаунта</string>
 </resources>
