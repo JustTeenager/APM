@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,7 @@ public class LoginFragment extends Fragment {
         //String loginAtRegistration = sp.getString(RegisterAdminFragment.KEY_TO_EMAIL_IN_PREFS," ");
         //String passAtRegistration = sp.getString(RegisterAdminFragment.KEY_TO_PASS_IN_PREFS," ");
         Admin admin = RoomDBSingleton.getInstance(getContext()).getAdminDao().getAdmin(login,pass);
+        Log.e("admin==null?", String.valueOf(admin==null));
         //if (login.equals(loginAtRegistration) && pass.equals(passAtRegistration)){
         if (admin!=null){
             mActivityCallback.login();

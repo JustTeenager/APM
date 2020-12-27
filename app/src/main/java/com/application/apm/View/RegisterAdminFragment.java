@@ -1,7 +1,6 @@
 package com.application.apm.View;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +18,6 @@ import com.application.apm.Model.RoomDBSingleton;
 import com.application.apm.R;
 
 public class RegisterAdminFragment extends Fragment {
-
-    public static final String KEY_TO_EMAIL_IN_PREFS="key_to_email";
-    public static final String KEY_TO_PASS_IN_PREFS="key_to_pass";
 
     private Button mRegButton;
     private EditText mEmailInput;
@@ -56,20 +52,15 @@ public class RegisterAdminFragment extends Fragment {
     }
 
     private void register() {
-        if (!mEmailInput.getText().toString().isEmpty() && !mPasswordInput.getText().toString().isEmpty()){
-            //SharedPreferences sp=getActivity().getPreferences(Context.MODE_PRIVATE);
-            //SharedPreferences.Editor mEditor = sp.edit();
-            //mEditor.putString(KEY_TO_EMAIL_IN_PREFS, mEmailInput.getText().toString());
-            //mEditor.putString(KEY_TO_PASS_IN_PREFS, mPasswordInput.getText().toString());
-            //mEditor.commit();
+        if (mPasswordInput.getText().length()<10){
+            Toast.makeText(getContext(), R.string.password_short,Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if (!mEmailInput.getText().toString().isEmpty() && !mPasswordInput.getText().toString().isEmpty()){
             Admin admin = new Admin(mEmailInput.getText().toString(),mPasswordInput.getText().toString());
             RoomDBSingleton.getInstance(getContext()).getAdminDao().insertAdmin(admin);
             Toast.makeText(getContext(),getString(R.string.reg_completed),Toast.LENGTH_SHORT).show();
             mActivityCallback.onRegistered(mEmailInput.getText().toString(),mPasswordInput.getText().toString());
-            return;
-        }
-        else if (mPasswordInput.getText().length()>9){
-            Toast.makeText(getContext(), R.string.password_short,Toast.LENGTH_SHORT).show();
             return;
         }
         Toast.makeText(getContext(),getString(R.string.empty_reg),Toast.LENGTH_SHORT).show();

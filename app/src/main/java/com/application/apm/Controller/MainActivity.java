@@ -32,7 +32,6 @@ public class MainActivity extends SingleFragmentActivity implements LoginFragmen
 
     @Override
     public void register() {
-        //TODO ВХОд в другую регисрацию
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ViewPagerFragment()).addToBackStack(null).commit();
     }
 

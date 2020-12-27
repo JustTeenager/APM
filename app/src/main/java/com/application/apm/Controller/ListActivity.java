@@ -26,7 +26,11 @@ public class ListActivity extends SingleFragmentActivity implements ListUserFrag
     public Fragment getFragment() {
         if (client==null)
         return new ListUserFragment();
-        else return  UserDetailFragment.getInstance(client);
+        else {
+            User tempClient=client;
+            client=null;
+            return  UserDetailFragment.getInstance(tempClient);
+        }
     }
 
     @Override
